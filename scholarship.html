@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Eligibility Form</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4b0082, #8a2be2);
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #4b0082;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #4b0082;
+        }
+        .result {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Scholarship Eligibility Form</h2>
+        <form id="scholarshipForm">
+            <label for="college">Select College:</label>
+            <select id="college" name="college" required>
+                <option value="">--Select College--</option>
+                <option value="rizvi">Rizvi College</option>
+                <option value="national">National College</option>
+            </select>
+
+            <label for="marks">Enter Marks (%):</label>
+            <input type="number" id="marks" name="marks" min="0" max="100" required>
+
+            <label for="income">Select Annual Family Income:</label>
+            <select id="income" name="income" required>
+                <option value="">--Select Income Range--</option>
+                <option value="100000-200000">100,000 - 200,000</option>
+                <option value="200000-300000">200,000 - 300,000</option>
+                <option value="300000-400000">300,000 - 400,000</option>
+                <option value="400000-above">400,000 & above</option>
+            </select>
+
+            <label for="minority">Do you belong to any minority?</label>
+            <select id="minority" name="minority" required>
+                <option value="">--Select Option--</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <button type="button" onclick="checkEligibility()">Check Eligibility</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function checkEligibility() {
+            const college = document.getElementById('college').value;
+            const marks = document.getElementById('marks').value;
+            const income = document.getElementById('income').value;
+            const minority = document.getElementById('minority').value;
+            const resultDiv = document.getElementById('result');
+
+            if (college !== 'rizvi') {
+                resultDiv.textContent = 'You are not eligible for the scholarship.';
+                return;
+            }
+
+            if (marks < 80) {
+                resultDiv.textContent = 'You are not eligible for the scholarship.';
+                return;
+            }
+
+            if (income === '400000-above') {
+                resultDiv.textContent = 'You are not eligible for the scholarship.';
+                return;
+            }
+
+            resultDiv.textContent = 'Congratulations! You are eligible for the scholarship.';
+        }
+    </script>
+</body>
+</html>
